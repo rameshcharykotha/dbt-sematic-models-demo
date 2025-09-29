@@ -7,7 +7,7 @@ This project demonstrates the power of dbt's semantic layer to define and query 
 The primary goal of this project is to showcase how to:
 - **Structure a dbt project** to support a semantic layer.
 - **Define semantic models** with entities, measures, and dimensions.
-- **Create and query business-centric metrics** using dbt's `dbt sl` command.
+- **Create and query business-centric metrics** using the `mf query` command.
 - **Promote a shared understanding of business logic** by decoupling metric definitions from downstream tools.
 
 This demo is built around a common business scenario: analyzing revenue and order data.
@@ -118,21 +118,37 @@ Once you have completed the setup, you can run the project and query the semanti
    This command will run all models, tests, and seeds in your project.
 
 2. **Query the semantic layer**:
-   You can query the defined metrics using the `dbt sl` command. Here are a few examples:
+   You can query the defined metrics using the `mf` command-line tool, which is a part of the MetricFlow package. Here are a few examples:
 
    - **Get total revenue**:
      ```bash
-     dbt sl query --metrics total_revenue_metric
+     mf query --metrics total_revenue_metric
      ```
 
    - **Get total revenue and order count, grouped by region**:
      ```bash
-     dbt sl query --metrics total_revenue_metric order_count_metric --group-by region
+     mf query --metrics total_revenue_metric order_count_metric --group-by region
      ```
 
    - **Get average revenue, grouped by month**:
      ```bash
-     dbt sl query --metrics avg_revenue_metric --group-by order_month
+     mf query --metrics avg_revenue_metric --group-by order_month
      ```
+
+### Inspecting the Query Plan
+
+You can also inspect the generated SQL and the dataflow plan without executing the query against your data warehouse. This is useful for debugging and understanding how MetricFlow works.
+
+- **Explain the query**:
+  The `--explain` flag will output the SQL that MetricFlow generates for your query.
+  ```bash
+  mf query --metrics total_revenue_metric --group-by region --explain
+  ```
+
+- **Show the dataflow plan**:
+  The `--show-dataflow-plan` flag provides a detailed, step-by-step plan of how MetricFlow constructs the final query.
+  ```bash
+  mf query --metrics total_revenue_metric --group-by region --show-dataflow-plan
+  ```
 
 By following this guide, you can explore how dbt's semantic layer provides a powerful and consistent way to define and analyze business metrics.
