@@ -1,0 +1,12 @@
+dbt_semantic_models_demo:
+  outputs:
+    dev:
+      dbname: home
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: public
+      threads: 1
+      type: postgres
+      user: postgres
+  target: dev

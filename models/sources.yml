@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: public   # Replace with your source database/schema name
+    description: "Source database containing raw tables"
+    tables:
+      - name: daily_revenue

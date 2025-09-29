@@ -1,0 +1,47 @@
+version: 2
+
+semantic_models:
+  - name: revenue_model
+    model: ref('fct_revenue')
+    description: "Revenue fact table at order level"
+
+    entities:
+      - name: order
+        type: primary
+        expr: order_id
+      - name: product
+        type: foreign
+        expr: product_id
+      - name: customer
+        type: foreign
+        expr: customer_id
+
+    measures:
+      - name: total_revenue
+        agg: sum
+        expr: revenue
+        description: "Sum of revenue"
+        agg_time_dimension: order_date
+
+      - name: order_count
+        agg: count
+        expr: order_id
+        description: "Number of orders"
+        agg_time_dimension: order_date
+
+
+    dimensions:
+      - name: order_date
+        type: time
+        expr: order_date
+        type_params:
+          time_granularity: day
+      - name: region
+        type: categorical
+        expr: region
+      - name: order_month
+        type: categorical
+        expr: date_trunc('month', order_date)
+      - name: order_year
+        type: categorical
+        expr: date_trunc('year', order_date)
