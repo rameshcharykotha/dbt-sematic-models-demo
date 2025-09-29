@@ -46,13 +46,6 @@ dbt_semantic_models_demo:
    dbt deps
    ```
 
-3. **Load the seed data**:
-   This project includes a sample dataset (`daily_revenue.csv`) to get you started quickly. Load it into your data warehouse by running:
-   ```bash
-   dbt seed
-   ```
-   This command creates the `daily_revenue` table in your source schema.
-
 ## 📂 Project Structure
 
 The project is organized into the following key directories and files:
