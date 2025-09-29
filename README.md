@@ -64,15 +64,9 @@ The project is organized into the following key directories and files:
     - **`fct_revenue.yml`**: Defines the `revenue_model` with its entities, measures, and dimensions.
     - **`metrics.yml`**: Defines business metrics like `total_revenue_metric` and `avg_revenue_metric`.
 
-- **`seeds/`**: Contains the raw CSV data (`daily_revenue.csv`) used to populate the source table.
-
 - **`dbt_project.yml`**: The main configuration file for the dbt project.
 
 ## 📊 Models
-
-### Source Data
-
-The project uses a single source table, `public.daily_revenue`, which contains raw order and revenue information.
 
 ### Fact Model
 
